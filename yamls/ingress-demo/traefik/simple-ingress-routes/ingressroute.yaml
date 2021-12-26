@@ -1,0 +1,17 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: black-widow-api
+  namespace: apps
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: "Host(`black-widow-tr.dev.lsports.cloud`) || Host(`api.dev.lsports.cloud`)"
+  #  - match: "Host(`black-widow-api.dev.lsports.cloud`) || (Host(`api.dev.lsports.cloud`) && Path(`/black-widow`))"
+      kind: Rule
+      services:
+        - name: black-widow-api
+          port: 3000
+

@@ -2,15 +2,33 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: nginx
+  name: cheddar
   namespace: default
 spec:
   entryPoints:
     - web
+    - websecure
   routes:
-    - match: Host(`nginx.example.com`)
+    - match: Host(`cheddar.lsports.cloud`)
       kind: Rule
       services:
-        - name: nginx-deploy-main
+        - name: cheddar
+          port: 80
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: stilton
+  namespace: default
+spec:
+  entryPoints:
+    - web
+    - websecure
+  routes:
+    - match: Host(`tnuva.lsports.cloud`)
+      kind: Rule
+      services:
+        - name: stilton
           port: 80
 
